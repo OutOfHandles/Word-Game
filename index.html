@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:title" content="Word Search">
+    <meta property="og:description" content="Play a fun game of Word Search!">
+    <link rel="icon" type="image/x-icon" href="logo.png">
+    <title>Letter game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="main-container">
+        <div class="main">
+            <div class="board" id="board"></div>
+            <div class="words-list-container">
+                <div class="words-list" id="words-list"></div>
+                <div class="difficulty">
+                    <button class="difficulty1 selected_btn">EASY</button>
+                    <button class="difficulty1">MEDIUM</button>
+                    <button class="difficulty1">HARD</button>
+                </div>
+                <button class="reset" id="reset">RESET</button>
+            </div>
+        </div>
+    </div>
+    <div class="contaienr-win" style="display: none;" id="win_screen">
+        <div class="win">
+            <span>You win!</span>
+            <button id="btn_play_again">Play again?</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

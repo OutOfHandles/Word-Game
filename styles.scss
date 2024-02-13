@@ -1,0 +1,144 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: #1f1f1f;
+}
+.main-container{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .main{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        .board{
+            display: grid;
+            padding: 25px;
+            border: 1px solid white;
+            border-radius: 16px;
+            gap: 1px;
+            span{
+                width: 30px; 
+                height: 30px;
+                background-color: #ffffff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: bolder;
+                font-size: 1.25em;
+                &.selected{
+                    background-color: #e8974c;
+                }
+                &.correct{
+                    background-color: green;
+                }
+                &:hover{
+                    cursor: pointer;
+                }
+            }
+        }
+        .words-list-container{
+            height: 50%;
+            width: 300px;
+            padding: 20px;
+            border: 1px solid #ffffff;
+            background-color: #181717;
+            border-radius: 16px;
+            margin-left: 10px;
+            .words-list{
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                border-radius: 16px;
+                background: rgb(34,34,34);
+                background: linear-gradient(180deg, rgba(34,34,34,1) 56%, rgba(48,48,48,1) 100%);
+                span{
+                    color: rgb(192, 2, 2);
+                    width: 100%;
+                    padding: 17.5px 0px;
+                    text-align: center;
+                    font-weight: bolder;
+                    font-size: 1.25em;
+                }
+            }
+            .difficulty{
+                margin-top: 20px;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                button{
+                    text-align: center;
+                    margin: 0px 5px;
+                    padding: 5px;
+                    border: none;
+                    border-radius: 7.5px;
+                    font-weight: bolder;
+                    font-size: 1.15em;
+                    background-color: #e8974c;
+                    cursor: pointer;
+                    &.selected_btn{
+                        background-color: darkgray;
+                        border: 2px solid black;
+                    }
+                }
+            }
+            .reset{
+                width: 100%;
+                margin-top: 20px;
+                background-color: red;
+                border: none;
+                border-radius: 16px;
+                padding: 10px 20px;
+                font-size: 1.15em;
+                font-weight: bolder;
+                cursor: pointer;
+            }
+        }
+    }
+}
+.contaienr-win{
+    position: absolute;
+    top: 50%; 
+    right: 50%;
+    transform: translate(50%,-50%);
+    width: 100vw;
+    height: 100vh;
+    .win{
+        position: absolute;
+        top: 50%; 
+        right: 50%;
+        transform: translate(50%,-50%);
+        width: 300px;
+        height: 150px;
+        border: 1px solid white;
+        border-radius: 16px;
+        background-color: #333333;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 20px;
+        span{
+            color: green;
+            font-size: 1.5em;
+            font-weight: bolder;
+        }
+        button{
+            width: 75%;
+            margin-top: 20px;
+            background-color: green;
+            border: none;
+            border-radius: 16px;
+            padding: 10px 20px;
+            font-size: 1.15em;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+    }
+}
