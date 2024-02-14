@@ -32,6 +32,7 @@ const random_words = ['CSS', 'HTML', 'Javascript', 'Elephant', 'Sunshine', 'Keyb
 'Mystery', 'Journey', 'Candlelight', 'Dream', 'Serenade', 'Reflection', 'Sparkle', 'Cascade', 'Silhouette'];
 
 let current_words = []; 
+let word_list_ = [];
 let selected_word = [];
 let selected_word_index = 0;
 
@@ -204,7 +205,7 @@ function load_words_list(){
     for(let i = 0; i<board_def.difficulty; i++){
         let span = document.createElement('span');
         span.id = 'word ' + i;
-        span.textContent = current_words[i];
+        span.textContent = word_list_[i];
         words_container.appendChild(span)
     }
 }
@@ -236,7 +237,12 @@ function put_words(){
                 do{
                     generated_word = random_words[random_number(0, random_words.length - 1)];
                 } while(current_words.includes(generated_word));
+                word_list_[i] = generated_word;
                 
+                if(Math.random() > 0.7){
+                    generated_word = generated_word.split('').reverse().join('');
+                }
+
                 current_words[i] = generated_word;
                 
                 let cant_fit = true;
@@ -350,6 +356,7 @@ function reset_everything(rec_dim, rec_difficulty){
     selected_word_index = 0;
 
     current_words = [];
+    word_list_ = [];
 
     board_def.dim = rec_dim;
     board_def.difficulty = rec_difficulty;
@@ -370,7 +377,7 @@ function reset_everything(rec_dim, rec_difficulty){
     loadBoard();
     space();
     put_words();
-    generate_letters();
+    generate_letters()
     update_board();
     load_words_list();
     console.log(current_words);
