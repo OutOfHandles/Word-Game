@@ -44,22 +44,12 @@ function random_number(min, max){
 function check_movement(row, col){
     if(control.control_times > 2){
         control_times = 3;
-        if(parseInt(control.row0)+1 == row && parseInt(control.col0)+1 == col && control.type == 'dia'){ //dia
+        if((parseInt(control.row0)+1 == row && parseInt(control.col0)+1 == col && control.type == 'dia') || (parseInt(control.row0)-1 == row && parseInt(control.col0)+1 == col && control.type == 'dia1')){ //dia
             control.row0 = row;
             control.col0 = col;
             return true;
         }
-        if(parseInt(control.row0)-1 == row && parseInt(control.col0)+1 == col && control.type == 'dia'){ //dia
-            control.row0 = row;
-            control.col0 = col;
-            return true;
-        }
-        if(parseInt(control.row1)-1 == row && parseInt(control.col1)-1 == col && control.type == 'dia'){ //dia
-            control.row1 = row;
-            control.col1 = col;
-            return true;
-        }
-        if(parseInt(control.row1)+1 == row && parseInt(control.col1)-1 == col && control.type == 'dia'){ //dia
+        if((parseInt(control.row1)+1 == row && parseInt(control.col1)-1 == col && control.type == 'dia1') || (parseInt(control.row1)-1 == row && parseInt(control.col1)-1 == col && control.type == 'dia')){ //dia
             control.row1 = row;
             control.col1 = col;
             return true;
@@ -83,13 +73,23 @@ function identify_movement(row, col){
         control.col1 = col;
     }
     if(control.control_times == 2){
-        if(parseInt(control.row0)+1 == row && parseInt(control.col0)+1 == col || parseInt(control.row0)-1 == row && parseInt(control.col0)+1 == col){
+        if(parseInt(control.row0)+1 == row && parseInt(control.col0)+1 == col){
             control.type = 'dia';
             control.row0 = row;
             control.col0 = col;
         }
-        if(parseInt(control.row1)-1 == row && parseInt(control.col1)-1 == col || parseInt(control.row1)+1 == row && parseInt(control.col1)-1 == col){
+        if(parseInt(control.row0)-1 == row && parseInt(control.col0)+1 == col){
+            control.type = 'dia1';
+            control.row0 = row;
+            control.col0 = col;
+        }
+        if(parseInt(control.row1)-1 == row && parseInt(control.col1)-1 == col){
             control.type = 'dia';
+            control.row1 = row;
+            control.col1 = col;
+        }
+        if(parseInt(control.row1)+1 == row && parseInt(control.col1)-1 == col){
+            control.type = 'dia1';
             control.row1 = row;
             control.col1 = col;
         }
@@ -383,7 +383,7 @@ window.onload = function(){
     generate_letters();
     update_board();
     load_words_list();
-    console.warn('If there are any "bugs" then its not a bug, its a feature!');
+    console.warn('If there are any "bugs" then its not a bug, its an experience enhancing feature!');
     console.log(current_words);
 }
 
