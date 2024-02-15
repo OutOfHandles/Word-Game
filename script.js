@@ -287,7 +287,7 @@ function put_words(){
                     }
                     if(random > 2/3){ //diagonal
                         if(generated_word.length + parseInt(col) < board_def.dim && generated_word.length + parseInt(row) < board_def.dim){
-                            if(Math.random() <= .1){
+                            if(Math.random() <= .7){
                                 if(check_space_diagonal(row, col, generated_word.length)){
                                     for(let j = 0; j < generated_word.length; j++){
                                         board[row+j][col+j] = generated_word[j].toLocaleUpperCase();
