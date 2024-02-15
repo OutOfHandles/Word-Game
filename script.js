@@ -127,7 +127,7 @@ function check_selected_around(row, col){
 function clear_selected(){
     const option = document.querySelectorAll('[id^="option"]');
     option.forEach(function(btn){
-        btn.classList.remove('selected')
+        btn.classList.remove('selected');
     });
     selected_word = [];
     selected_word_index = 0;
@@ -146,6 +146,19 @@ function check_space_diagonal(row, col, length){
     }
     return true;
 }
+
+function check_space_diagonal_type1(row, col, length){
+    row = parseInt(row);
+    col = parseInt(col);
+    for(let i = col, j = row; i > col - length; i--, j++){
+        console.log(j + ' ' + i);
+        if(board[j][i] !== ''){
+            return false;
+        }
+    }
+    return true;
+}
+
 function check_space_horizontal(row, col, length){
     row = parseInt(row);
     col = parseInt(col);
@@ -274,11 +287,21 @@ function put_words(){
                     }
                     if(random > 2/3){ //diagonal
                         if(generated_word.length + parseInt(col) < board_def.dim && generated_word.length + parseInt(row) < board_def.dim){
-                            if(check_space_diagonal(row, col, generated_word.length)){
-                                for(let j = 0; j < generated_word.length; j++){
-                                    board[row+j][col+j] = generated_word[j].toLocaleUpperCase();
+                            if(Math.random() <= .1){
+                                if(check_space_diagonal(row, col, generated_word.length)){
+                                    for(let j = 0; j < generated_word.length; j++){
+                                        board[row+j][col+j] = generated_word[j].toLocaleUpperCase();
+                                    }
+                                    cant_fit = false;
                                 }
-                                cant_fit = false;
+                            }
+                            else{
+                                if(check_space_diagonal_type1(row, col, generated_word.length)){
+                                    for(let j = 0; j < generated_word.length; j++){
+                                        board[row+j][col-j] = generated_word[j].toLocaleUpperCase();
+                                    }
+                                    cant_fit = false;
+                                }
                             }
                         }
                     }
@@ -377,7 +400,7 @@ function reset_everything(rec_dim, rec_difficulty){
     loadBoard();
     space();
     put_words();
-    generate_letters()
+    generate_letters();
     update_board();
     load_words_list();
     console.log(current_words);
